@@ -243,6 +243,13 @@ Screenshots of the internal management system built during OJT, demonstrating th
   <img src="ojt/Procurement(ProjectManager).png" alt="Procurement - Project Manager View" width="800" />
 </p>
 
+### 🧪 Automated Backend Testing
+> A comprehensive suite of 19+ automated feature test suites built with PHPUnit. These tests rigorously validate core functionalities such as Role-Based Access Control (RBAC), end-to-end procurement workflows, secure API authentication, database consistency, and system vulnerability protection—ensuring the system remains highly reliable.
+
+<p align="center">
+  <img src="ojt/BackendTestResult.png" alt="Backend Test Results" width="800" />
+</p>
+
 ---
 
 ## 👥 Team
