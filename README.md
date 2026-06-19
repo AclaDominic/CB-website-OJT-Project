@@ -211,6 +211,40 @@ All protected endpoints require `Authorization: Bearer <token>` header.
 
 ---
 
+## 📸 System Showcase
+
+Screenshots of the internal management system built during OJT, demonstrating the key operational modules and role-based access control.
+
+### 👤 User Management
+> Manage system users with role assignments. Admins can add, edit, and assign roles (Admin, Project Manager, Site Engineer, Staff) to control access across the platform.
+
+<p align="center">
+  <img src="ojt/User-Management.png" alt="User Management Panel" width="800" />
+</p>
+
+### 🔐 Role & Permission Manager
+> A granular RBAC system powered by Spatie Permissions. Each role card displays its permission count and access highlights — making it easy to audit and manage what each role can do across 25+ system permissions.
+
+<p align="center">
+  <img src="ojt/Role-and-Permission_Manager.png" alt="Role and Permission Manager" width="800" />
+</p>
+
+### 📋 Procurement — Admin View
+> The Admin procurement dashboard with full visibility: active/completed request tabs, search functionality, status tracking (Submitted, Processing), and access to **Generate Report** for PDF export via DomPDF.
+
+<p align="center">
+  <img src="ojt/Procurement(admin).png" alt="Procurement - Admin View" width="800" />
+</p>
+
+### 📋 Procurement — Project Manager View
+> The same Procurement module viewed as a Project Manager role — demonstrating the RBAC in action. The sidebar adapts to show only the modules the PM role has access to, and the report generation tab is hidden based on permissions.
+
+<p align="center">
+  <img src="ojt/Procurement(ProjectManager).png" alt="Procurement - Project Manager View" width="800" />
+</p>
+
+---
+
 ## 👥 Team
 
 This project was developed as a team deliverable during our OJT (On-the-Job Training) internship. While this was a group effort, I served as the primary developer — responsible for the full-stack architecture, backend API, authentication, RBAC, testing, and the majority of frontend system modules. Contributions from team members are reflected in the git history.
