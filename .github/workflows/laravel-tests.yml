@@ -1,0 +1,62 @@
+name: Laravel Tests
+
+on:
+  push:
+    branches: [ main, master, develop ]
+  pull_request:
+    branches: [ main, master, develop ]
+
+jobs:
+  tests:
+    name: Run Laravel Test Suite
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        php: ['8.2']
+
+    steps:
+      # ─── Checkout Code ───────────────────────────────────────────
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # ─── Setup PHP ───────────────────────────────────────────────
+      - name: Setup PHP ${{ matrix.php }}
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php }}
+          extensions: mbstring, xml, ctype, json, bcmath, curl, sqlite3, pdo_sqlite
+          coverage: none
+
+      # ─── Cache Composer Dependencies ─────────────────────────────
+      - name: Cache Composer dependencies
+        uses: actions/cache@v4
+        with:
+          path: backend/vendor
+          key: composer-${{ runner.os }}-php${{ matrix.php }}-${{ hashFiles('backend/composer.lock') }}
+          restore-keys: |
+            composer-${{ runner.os }}-php${{ matrix.php }}-
+
+      # ─── Install Dependencies ────────────────────────────────────
+      - name: Install Composer dependencies
+        working-directory: backend
+        run: composer install --no-interaction --no-progress --prefer-dist --optimize-autoloader
+
+      # ─── Prepare Environment ─────────────────────────────────────
+      - name: Copy .env.testing to .env
+        working-directory: backend
+        run: cp .env.testing .env
+
+      - name: Generate application key
+        working-directory: backend
+        run: php artisan key:generate --env=testing
+
+      # ─── Clear Caches ───────────────────────────────────────────
+      - name: Clear config cache
+        working-directory: backend
+        run: php artisan config:clear
+
+      # ─── Run Tests ──────────────────────────────────────────────
+      - name: Run PHPUnit tests
+        working-directory: backend
+        run: php artisan test --parallel --no-interaction
