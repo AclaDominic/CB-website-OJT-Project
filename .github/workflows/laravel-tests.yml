@@ -59,4 +59,4 @@ jobs:
       # ─── Run Tests ──────────────────────────────────────────────
       - name: Run PHPUnit tests
         working-directory: backend
-        run: php artisan test --no-interaction
+        run: php artisan test
